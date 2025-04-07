@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sri Lanka Railways - Official Website</title>
+    <style>
+        :root {
+            --primary: #1a5276;
+            --secondary: #2e86c1;
+            --accent: #f39c12;
+            --light: #f8f9fa;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --danger: #c0392b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: var(--dark);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+            border-radius: 50%;
+        }
+        
+        .logo h1 {
+            font-size: 20px;
+            font-weight: 700;
+             font-family: "Lucida Handwriting", cursive;
+        }
+        
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: rgb(255, 255, 255);
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 5px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        nav ul li a:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover:after {
+            width: 100%;
+        }
+        
+        .language-select {
+            margin-left: 20px;
+            padding: 5px 10px;
+            border: 1px solid rgb(0, 0, 0);
+            border-radius: 4px;
+            background-color: transparent;
+            color: rgb(0, 0, 0);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            color: rgb(255, 255, 255);
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        
+        .hero-content {
+            max-width: 600px;
+            padding: 20px;
+        }
+        
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #e67e22;
+            transform: translateY(-2px);
+        }
+        
+        /* Quick Search */
+        .quick-search {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: -70px;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            z-index: 10;
+        }
+        
+        .search-form {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .form-group {
+            flex: 1 1 200px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .search-btn {
+            flex: 1 1 100px;
+            margin-top: 28px;
+            background-color: var(--secondary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .search-btn:hover {
+            background-color: var(--primary);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0 60px;
+        }
+        
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-heading h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .section-heading p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .service-card i {
+            font-size: 40px;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .service-card p {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        
+        /* Popular Routes */
+        .popular-routes {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .routes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .route-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .route-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .route-image {
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .route-details {
+            padding: 20px;
+        }
+        
+        .route-details h3 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .route-details p {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .route-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* News & Updates */
+        .news {
+            padding: 60px 0;
+        }
+        
+        .news-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+        }
+        
+        .news-main {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .news-image {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .news-content {
+            padding: 25px;
+        }
+        
+        .news-date {
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .news-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .news-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        
+        .news-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .news-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .news-card h4 {
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
+        
+        .news-card .news-date {
+            font-size: 0.8rem;
+        }
+        
+        /* Download App */
+        .app-download {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .app-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .app-content {
+            flex: 0 0 50%;
+            padding-right: 40px;
+        }
+        
+        .app-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        
+        .app-content p {
+            line-height: 1.6;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .app-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .app-btn {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            color: var(--dark);
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+        
+        .app-btn:hover {
+            transform: translateY(-3px);
+        }
+        
+        .app-btn i {
+            font-size: 24px;
+            margin-right: 10px;
+        }
+        
+        .app-btn span {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .app-btn small {
+            font-size: 0.8rem;
+        }
+        
+        .app-btn strong {
+            font-size: 1.1rem;
+        }
+        
+        .app-image {
+            flex: 0 0 40%;
+        }
+        
+        .app-image img {
+            width: 100%;
+            max-width: 300px;
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-contact p {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-contact i {
+            margin-right: 10px;
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-newsletter input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .footer-newsletter button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .footer-newsletter button:hover {
+            background-color: #e67e22;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .app-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .app-content {
+                padding-right: 0;
+                margin-bottom: 40px;
+                flex: 0 0 100%;
+            }
+            
+            .app-buttons {
+                justify-content: center;
+            }
+            
+            .news-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                background-color: var(--primary);
+                width: 100%;
+                height: calc(100vh - 80px);
+                transition: left 0.3s ease;
+                z-index: 99;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            nav ul li {
+                margin: 0 0 20px 0;
+            }
+            
+            .hero {
+                height: 400px;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .search-form {
+                flex-direction: column;
+            }
+            
+            .search-btn {
+                margin-top: 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .logo h1 {
+                font-size: 16px;
+            }
+            
+            .hero {
+                height: 300px;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .quick-search {
+                margin-top: -50px;
+                padding: 15px;
+            }
+            
+            .service-card, .route-card, .news-card {
+                padding: 15px;
+            }
+        }
+
+        /* Font Awesome Icons (Simple Implementation) */
+        .fa {
+            display: inline-block;
+            font-style: normal;
+            font-variant: normal;
+            font-weight: normal;
+            font-family: 'FontAwesome';
+            font-size: inherit;
+            text-rendering: auto;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Add some basic icon shapes using content */
+        .fa-train:before { content: "🚆"; }
+        .fa-ticket:before { content: "🎟️"; }
+        .fa-map:before { content: "🗺️"; }
+        .fa-clock:before { content: "🕒"; }
+        .fa-mobile:before { content: "📱"; }
+        .fa-apple:before { content: ""; }
+        .fa-android:before { content: ""; }
+        .fa-envelope:before { content: "✉️"; }
+        .fa-phone:before { content: "📞"; }
+        .fa-map-marker:before { content: "📍"; }
+        .fa-facebook:before { content: ""; }
+        .fa-twitter:before { content: ""; }
+        .fa-instagram:before { content: ""; }
+        .fa-youtube:before { content: ""; }
+        .fa-bars:before { content: "☰"; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="logo.png" alt="Sri Lanka Railways Logo">
+                <h1>Sri Lanka Railways</h1>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <i class="fa fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#timetable">Timetable</a></li>
+                    <li><a href="#tickets">Tickets</a></li>
+                    <li><a href="#routes">Routes</a></li>
+                    <li><a href="#fares">Fares</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <select class="language-select">
+                <option value="en">English</option>
+                <option value="si">සිංහල</option>
+                <option value="ta">தமிழ்</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home"  style="background-image: url('bimg.jpg');">
+        <div class="container">
+            <div class="hero-content">
+                <h2><b>Welcome to Sri Lanka Railways</b></h2>
+                <p><b>Connecting destinations across Sri Lanka. Book tickets, check schedules, and enjoy your journey with comfort and safety.</b></p>
+                <a href="#" class="btn btn-primary">Book Tickets</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Search -->
+    <div class="container">
+        <div class="quick-search">
+            <form class="search-form">
+                <div class="form-group">
+                    <label for="from">From</label>
+                    <select id="from">
+                        <option value="">Select station</option>
+                        <option value="colombo_fort">Colombo Fort</option>
+                        <option value="kandy">Kandy</option>
+                        <option value="galle">Galle</option>
+                        <option value="badulla">Badulla</option>
+                        <option value="anuradhapura">Anuradhapura</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="to">To</label>
+                    <select id="to">
+                        <option value="">Select station</option>
+                        <option value="colombo_fort">Colombo Fort</option>
+                        <option value="kandy">Kandy</option>
+                        <option value="galle">Galle</option>
+                        <option value="badulla">Badulla</option>
+                        <option value="anuradhapura">Anuradhapura</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="date">Date</label>
+                    <input type="date" id="date">
+                </div>
+                <div class="form-group">
+                    <label for="passengers">Passengers</label>
+                    <select id="passengers">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+                <button type="button" class="search-btn">Search Trains</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Our Services</h2>
+                <p>Explore the various services offered by Sri Lanka Railways</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fa fa-train"></i>
+                    <h3>Train Schedules</h3>
+                    <p>View up-to-date train schedules for all routes across Sri Lanka.</p>
+                    <a href="#" class="btn btn-primary">View Schedules</a>
+                </div>
+                <div class="service-card">
+                    <i class="fa fa-ticket"></i>
+                    <h3>Online Booking</h3>
+                    <p>Book your train tickets online and avoid queues at the station.</p>
+                    <a href="#" class="btn btn-primary">Book Now</a>
+                </div>
+                <div class="service-card">
+                    <i class="fa fa-map"></i>
+                    <h3>Railway Map</h3>
+                    <p>Interactive map showing all railway routes and stations in Sri Lanka.</p>
+                    <a href="#" class="btn btn-primary">Explore Map</a>
+                </div>
+                <div class="service-card">
+                    <i class="fa fa-clock"></i>
+                    <h3>Live Updates</h3>
+                    <p>Get real-time updates on train arrivals, departures, and delays.</p>
+                    <a href="#" class="btn btn-primary">Check Status</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Routes -->
+    <section class="popular-routes" id="routes">
+        <div class="container">
+            <div class="section-heading">
+                <h2>Popular Routes</h2>
+                <p>Explore Sri Lanka's most scenic and popular railway journeys</p>
+            </div>
+            <div class="routes-grid">
+                <div class="route-card">
+                    <div class="route-image" style="background-image: url('/api/placeholder/400/300')"></div>
+                    <div class="route-details">
+                        <h3>Colombo to Kandy</h3>
+                        <p>Experience the beautiful hill country journey with stunning landscapes.</p>
+                        <div class="route-meta">
+                            <span>Duration: 2.5 hours</span>
+                            <span>From LKR 240</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="route-card">
+                    <div class="route-image" style="background-image: url('/api/placeholder/400/300')"></div>
+                    <div class="route-details">
+                        <h3>Kandy to Ella</h3>
+                        <p>One of the most scenic train journeys in the world through tea plantations.</p>
+                        <div class="route-meta">
+                            <span>Duration: 7 hours</span>
+                            <span>From LKR 500</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="route-card">
+                    <div class="route-image" style="background-image: url('/api/placeholder/400/300')"></div>
+                    <div class="route-details">
+                        <h3>Colombo to Galle</h3>
+                        <p>Coastal line with beautiful ocean views and golden beaches.</p>
+                        <div class="route-meta">
+                            <span>Duration: 2 hours</span>
+                            <span>From LKR 180</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News & Updates -->
+    <section class="news" id="news">
+        <div class="container">
+            <div class="section-heading">
+                <h2>News & Updates</h2>
+                <p>Stay informed with the latest news from Sri Lanka Railways</p>
+            </div>
+            <div class="news-container">
+                <div class="news-main">
+                    <div class="news-image" style="background-image: url('/api/placeholder/800/400')"></div>
+                    <div class="news-content">
+                        <div class="news-date">April 3, 2025</div>
+                        <h3>New Express Train Service Between Colombo and Jaffna</h3>
+                        <p>Sri Lanka Railways is proud to announce a new express train service connecting Colombo and Jaffna. The new service will reduce travel time by 1.5 hours and feature modern air-conditioned carriages with improved facilities for passengers.</p>
+                        <a href="#" class="btn btn-primary">Read More</a>
+                    </div>
+                </div>
+                <div class="news-sidebar">
+                    <div class="news-card">
+                        <div class="news-date">March 28, 2025</div>
+                        <h4>Railway Track Upgrades on Southern Line</h4>
+                        <p>Maintenance work scheduled from April 15-20. Some trains may face delays.</p>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-date">March 15, 2025</div>
+                        <h4>Special Vesak Holiday Train Schedule</h4>
+                        <p>Additional trains will operate during Vesak holidays to accommodate travelers.</p>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-date">March 10, 2025</div>
+                        <h4>Mobile Ticketing Now Available</h4>
+                        <p>New mobile app launched for convenient ticket booking and management.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download App -->
+    <section class="app-download" id="app">
+        <div class="container app-container">
+            <div class="app-content">
+                <h2>Download Our Mobile App</h2>
+                <p>Book tickets, check train schedules, get live updates, and manage your journeys on-the-go with our official mobile application.</p>
+                <div class="app-buttons">
+                    <a href="#" class="app-btn">
+                        <i class="fa fa-apple"></i>
+                        <span>
+                            <small>Download on the</small>
+                            <strong>App Store</strong>
+                        </span>
+                    </a>
+                    <a href="#" class="app-btn">
+                        <i class="fa fa-android"></i>
+                        <span>
+                            <small>Get it on</small>
+                            <strong>Google Play</strong>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <div class="app-image">
+                <img src="/api/placeholder/300/600" alt="Mobile App Screenshot">
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Train Schedule</a></li>
+                        <li><a href="#">Book Tickets</a></li>
+                        <li><a href="#">Railway Map</a></li>
+                        <li><a href="#">Fare Calculator</a></li>
+                        <li><a href="#">Lost & Found</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Information</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">News & Updates</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">
+</body>
+</html>
