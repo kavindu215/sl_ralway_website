@@ -735,12 +735,9 @@
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <select class="language-select">
-                <option value="en">English</option>
-                <option value="si">සිංහල</option>
-                <option value="ta">தமிழ்</option>
-            </select>
+            <div id="google_translate_element"></div>
         </div>
+       
     </header>
 
     <!-- Hero Section -->
@@ -969,5 +966,17 @@
                         <li><a href="#">News & Updates</a></li>
                         <li><a href="#">Terms & Conditions</a></li>
                         <li><a href="#">
+    </footer> 
+
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+         new google.translate.TranslateElement(
+                { pageLanguage: 'en' },
+                'google_translate_element'
+            );
+        } 
+    </script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
